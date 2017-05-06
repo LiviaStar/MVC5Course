@@ -21,6 +21,7 @@ namespace MVC5Course.Models
         public string ProductName { get; set; }
         [Required]
         [Range(0, 9999, ErrorMessage = "請設定正確的商品價格範圍")]
+        [DisplayFormat(ApplyFormatInEditMode =true,DataFormatString = "{0:0}")]
         public Nullable<decimal> Price { get; set; }
         public Nullable<bool> Active { get; set; }
         [Required(ErrorMessage = "請輸入庫存量")]
