@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
@@ -15,7 +16,8 @@ namespace MVC5Course.Controllers
         {         
             var all = db.Product.AsQueryable();
 
-            var data = all.Where(p => p.Active == true &&
+            var data = all.Where(p => p.isDelete == false &&
+            p.Active == true &&
             p.ProductName.Contains("Black"));
 
             return View(data);
@@ -81,17 +83,33 @@ namespace MVC5Course.Controllers
 
             ////return View();
 
+            //Product product = db.Product.Find(id);
+
+            //foreach (var item in product.OrderLine.ToList())
+            //{
+            //    db.OrderLine.Remove(item);
+            //}
+
+            ////db.OrderLine.RemoveRange(product.OrderLine); //同樣寫法
+
+            //db.Product.Remove(product);
+            //db.SaveChanges(); //不要放到 foreach 裡, 其中一交易失敗則會所有rollback
+
             Product product = db.Product.Find(id);
+            product.isDelete = true;
 
-            foreach (var item in product.OrderLine.ToList())
+            try
             {
-                db.OrderLine.Remove(item);
+                db.SaveChanges();
             }
+            catch (DbEntityValidationException ex)
+            {
+                var errMsg = ex.EntityValidationErrors
+                    .First().ValidationErrors.First().ErrorMessage;
 
-            //db.OrderLine.RemoveRange(product.OrderLine); //同樣寫法
-
-            db.Product.Remove(product);
-            db.SaveChanges(); //不要放到 foreach 裡, 其中一交易失敗則會所有rollback
+                throw ex;
+            }
+            
 
             return RedirectToAction("Index");
         }

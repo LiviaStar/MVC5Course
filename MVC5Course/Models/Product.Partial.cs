@@ -30,8 +30,8 @@ namespace MVC5Course.Models
         
         [StringLength(80, ErrorMessage="欄位長度不得大於 80 個字元")]
         [Required(ErrorMessage = "請輸入商品名稱")]
-        [MinLength(3), MaxLength(30)]
-        [RegularExpression("(.+)-(.+)", ErrorMessage = "商品名稱格式錯誤")]
+        //[MinLength(3), MaxLength(30)]
+        //[RegularExpression("(.+)-(.+)", ErrorMessage = "商品名稱格式錯誤")]
         [DisplayName("商品名稱")]
         public string ProductName { get; set; }
         [Required]
