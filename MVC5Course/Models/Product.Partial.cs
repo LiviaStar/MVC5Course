@@ -5,7 +5,7 @@ namespace MVC5Course.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
-    using VaildationAttribute;
+    using VaildationAttributes;
 
     [MetadataType(typeof(ProductMetaData))]
     public partial class Product

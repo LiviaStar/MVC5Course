@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 
-namespace MVC5Course.Models.VaildationAttribute
+namespace MVC5Course.Models.VaildationAttributes
 {
     public class 商品名稱必須包含will字串Attribute : DataTypeAttribute
     {
