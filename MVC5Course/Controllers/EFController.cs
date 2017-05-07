@@ -83,7 +83,7 @@ namespace MVC5Course.Controllers
 
             Product product = db.Product.Find(id);
 
-            foreach( var item in product.OrderLine.ToList())
+            foreach (var item in product.OrderLine.ToList())
             {
                 db.OrderLine.Remove(item);
             }
@@ -93,7 +93,7 @@ namespace MVC5Course.Controllers
             db.Product.Remove(product);
             db.SaveChanges(); //不要放到 foreach 裡, 其中一交易失敗則會所有rollback
 
-            return View();
+            return RedirectToAction("Index");
         }
 
 
