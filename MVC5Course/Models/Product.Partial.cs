@@ -5,6 +5,7 @@ namespace MVC5Course.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using VaildationAttribute;
 
     [MetadataType(typeof(ProductMetaData))]
     public partial class Product
@@ -33,6 +34,7 @@ namespace MVC5Course.Models
         //[MinLength(3), MaxLength(30)]
         //[RegularExpression("(.+)-(.+)", ErrorMessage = "商品名稱格式錯誤")]
         [DisplayName("商品名稱")]
+        [商品名稱必須包含will字串(ErrorMessage = "商品名稱必須包含will字串")]
         public string ProductName { get; set; }
         [Required]
         [Range(0, 9999, ErrorMessage = "請設定正確的商品價格範圍")]

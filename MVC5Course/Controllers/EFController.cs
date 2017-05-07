@@ -23,6 +23,14 @@ namespace MVC5Course.Controllers
             return View(data);
         }
 
+        public ActionResult Detail(int id)
+        {
+            var data = db.Database.SqlQuery<Product>("SELECT * FROM dbo.Product WHERE ProductId=@p0", id)
+                .FirstOrDefault();
+
+            return View(data);
+        }
+
 
         public ActionResult Create()
         {
