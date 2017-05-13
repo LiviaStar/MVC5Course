@@ -18,6 +18,12 @@ namespace MVC5Course
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
+
+            //ViewEngines.Engines.Add(new WebFormViewEngine());
+            //不會去搜尋 aspx,ascx，提高一些效能
         }
     }
 }

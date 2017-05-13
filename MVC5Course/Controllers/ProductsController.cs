@@ -11,7 +11,7 @@ using MVC5Course.Models.ViewModels;
 
 namespace MVC5Course.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
         ProductRepository repo = RepositoryHelper.GetProductRepository();
 
@@ -31,6 +31,11 @@ namespace MVC5Course.Controllers
             var data = repo.GetProduct列表頁資料(Active);
 
             return View(data);
+        }
+
+        public ActionResult unknown()
+        {
+            return View(Content("Hello"));
         }
 
         // GET: Products/Details/5

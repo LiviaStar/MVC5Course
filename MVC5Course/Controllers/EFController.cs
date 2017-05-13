@@ -8,9 +8,9 @@ using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
-    public class EFController : Controller
+    public class EFController : BaseController
     {
-        FabricsEntities db = new FabricsEntities(); //全類別共用
+        //FabricsEntities db = new FabricsEntities(); //全類別共用
         // GET: EF
         public ActionResult Index()
         {         
