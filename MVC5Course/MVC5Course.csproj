@@ -288,6 +288,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Snoopy.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -395,6 +396,7 @@
     <Content Include="Views\EF\Remove.cshtml" />
     <Content Include="Views\EF\Index.cshtml" />
     <Content Include="Views\EF\Detail.cshtml" />
+    <Content Include="Views\Shared\SuccessRedirect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

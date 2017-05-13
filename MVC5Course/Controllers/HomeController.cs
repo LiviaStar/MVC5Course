@@ -32,6 +32,40 @@ namespace MVC5Course.Controllers
             return View();
         }
 
- 
+        public ActionResult PartialAbout()
+        {
+            //ViewBag
+            ViewBag.Message = "Your application description page.";
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("About"); //沒有Layout
+            }
+            else
+            {
+                return View("About");
+            }
+
+            //F12 Console 下指令
+            //$.get('/Home/PartialAbout'),function(data){alert(data)});
+        }
+
+        public ActionResult SomeAction()
+        {
+            return PartialView("SuccessRedirect","/");
+            //不要用 return content("<script>alert('建立成功');loction.href='/';")
+        }
+
+        public ActionResult GetFile()
+        {
+            return File(Server.MapPath("~/Content/Snoopy.png)"), "image/png", "NewName.png");
+        }
+
+        public ActionResult GetJson()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            return Json(db.Product.Take(5), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
