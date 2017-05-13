@@ -8,19 +8,39 @@ namespace MVC5Course.Models
     using VaildationAttributes;
 
     [MetadataType(typeof(ProductMetaData))]
-    public partial class Product
+    public partial class Product : IValidatableObject
     {
         public int 訂單數量
         {
             get
             {
-                //return this.OrderLine.Count;
+                return this.OrderLine.Count();
 
                 //return this.OrderLine.Where(p => p.Qty > 400).Count(); // 會找出全部再count
                 //return this.OrderLine.Where(p => p.Qty > 400).ToList().Count();
-                return this.OrderLine.Count(p => p.Qty > 400); //效能最好 select count(*) ...where p.Qty > 400
+                //return this.OrderLine.Count(p => p.Qty > 400); //效能最好 select count(*) ...where p.Qty > 400
                 //Entity Framework 效能不好可能是語法用錯
             }
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if(this.Price > 100 && this.Stock > 5)
+            {
+                yield return new ValidationResult("價格與庫存量不合理",new string[] { "price","Stock"});
+            }
+
+            using (var db = new FabricsEntities())
+            {                       
+                var item = db.Product.FirstOrDefault(p => p.ProductId == this.ProductId);
+
+                if(item.OrderLine.Count > 10 && this.Stock == 0)
+                {
+                    yield return new ValidationResult("訂單與庫存量不合理", new string[] { "stock"});
+                }
+            }
+
+            yield break;
         }
     }
     
